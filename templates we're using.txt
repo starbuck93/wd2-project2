@@ -1,0 +1,13 @@
+--Use this for the different items probably using php's GET to pull the item name and gather data about it and populate the fields
+	http://bootstrapzero.com/bootstrap-template/e-commerce
+
+--Use this probably for Wishlist, Cart, etc
+	http://getbootstrap.com/examples/starter-template/
+---Here is more useful code specifically for the top bar
+	http://www.bootply.com/render/101053
+
+--Use this for main page and logging in
+	http://getbootstrap.com/examples/jumbotron/
+
+--Use this modified for registering
+	http://getbootstrap.com/examples/signin/
