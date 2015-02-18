@@ -32,20 +32,42 @@
 
     <div class="container">
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-      </form>
-
+      <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+              <div class="panel panel-success">
+                  <div class="panel-heading">
+                      <h3 class="panel-title"><strong>Create An Account</strong></h3>
+                  </div>
+                  <div class="panel-body">
+                      <form role="form" method="post" action="index.php">
+                          <fieldset>
+                            <div class="form-group">
+                                  <input class="form-control" id="name" placeholder="Name" name="nameActual" type="text" value="" autofocus required>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="e1" placeholder="E-mail" name="email" type="email" value="" required>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="e2" placeholder="Confirm E-mail" name="email2" type="email" value="" onkeyup="CheckEm()" required>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="pswd1" placeholder="Password" name="password" type="password" value="" required>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="pswd2" placeholder="Confirm Password" name="password2" type="password" value="" required>
+                                  <span id="validate-status"></span>
+                                  <hr>
+                              </div>
+                              <!-- Change this to a button or input when using this as a form -->
+                              <input type="hidden" name="action" value="add_user" />
+                              <button class="btn btn-lg btn-success btn-block">Sign Up</button>
+                          </fieldset>
+                      </form>
+                      <center><a href="."><b>Already have an account?</b></a></center>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div> <!-- /container -->
 
 
