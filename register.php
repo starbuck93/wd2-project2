@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Registration</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                       <h3 class="panel-title"><strong>Create An Account</strong></h3>
                   </div>
                   <div class="panel-body">
-                      <form role="form" method="post" action="index.php">
+                      <form role="form" method="POST" action="register_data.php">
                           <fieldset>
                             <div class="form-group">
                                   <input class="form-control" id="name" placeholder="Name" name="nameActual" type="text" value="" autofocus required>

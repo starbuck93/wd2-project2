@@ -2,7 +2,7 @@
 	session_start();
 	require_once('DBQuery.php');
 	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$password = md5($_POST['password']);
 	//$role = $_POST['role'];
 	$query = "SELECT * FROM user WHERE `email`= '".$email."' AND `password`= '".$password."';";
 	$valid = new DBQuery($query);
@@ -21,7 +21,7 @@
 		$row = $result->fetch_assoc();
 		$_SESSION['email']=$row['email'];
 		echo "SUCCESS!!";
-		//header("Location: main.php");
+		header("Location: template.php");
 			
 	}
 ?>

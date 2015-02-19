@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2015 at 08:59 PM
+-- Generation Time: Feb 19, 2015 at 04:49 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `review` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(15) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `wishlist` text,
@@ -68,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `wishlist`, `cart`) VALUES
-(1, 'test', 'test', NULL, NULL);
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `wishlist`, `cart`) VALUES
+(1, 'test', 'test', 'test', NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -50,10 +50,10 @@
           <!--------------------------------------FORM-------------------------------------------------->
           <form action="log.php" class="navbar-form navbar-right" method="POST">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" name="email">
+              <input type="email" placeholder="Email" class="form-control" name="email" required>
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" name="password">
+              <input type="password" placeholder="Password" class="form-control" name="password" required>
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
             <a role="button" href="register.php" class="btn btn-default">Register</a>
