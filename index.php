@@ -1,5 +1,6 @@
 <?php
-$signedin = false;
+  $signedin = false;
+  session_start()
 ?>
 
 
@@ -46,15 +47,23 @@ $signedin = false;
           <a class="navbar-brand" href="#">Amazon Wanna-Be</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form action="index.php" class="navbar-form navbar-right">
+          <!--------------------------------------FORM-------------------------------------------------->
+          <form action="log.php" class="navbar-form navbar-right" method="POST">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Email" class="form-control" name="email">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="password" placeholder="Password" class="form-control" name="password">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
             <a role="button" href="register.php" class="btn btn-default">Register</a>
+            <?php
+              //INVALID USERNAME, PASSWORD MESSAGE
+              if (isset($_SESSION['invalid'])){
+                echo "<p style='color:red; margin:5px'>".$_SESSION['invalid']."</p><br>";
+                unset($_SESSION['invalid']);
+              }
+            ?>
           </form>
         </div><!--/.navbar-collapse -->
       </div>

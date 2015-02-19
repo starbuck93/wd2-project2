@@ -53,11 +53,11 @@
               <input type="password" placeholder="Password" name='password' class="form-control">
             </div>
             <?php
-				if (isset($_SESSION['invalid'])){
-					echo "<p style='color:red; margin:5px'>".$_SESSION['invalid']."</p><br>";
-					unset($_SESSION['invalid']);
-				}
-			?>
+        				if (isset($_SESSION['invalid'])){
+        					echo "<p style='color:red; margin:5px'>".$_SESSION['invalid']."</p><br>";
+        					unset($_SESSION['invalid']);
+        				}
+			       ?>
             <input type="submit" value="Submit" class="btn btn-success">
           </form>
         </div><!--/.navbar-collapse -->
