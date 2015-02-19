@@ -20,7 +20,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-
+    <script src="js/match-check.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -39,23 +39,24 @@
                       <h3 class="panel-title"><strong>Create An Account</strong></h3>
                   </div>
                   <div class="panel-body">
-                      <form role="form" method="POST" action="register_data.php">
+                      <form role="form" name="registerForm" method="POST" action="register_data.php">
                           <fieldset>
                             <div class="form-group">
-                                  <input class="form-control" id="name" placeholder="Name" name="nameActual" type="text" value="" autofocus required>
+                                  <input class="form-control" id="name" placeholder="Name" name="nameActual" type="text" autofocus required>
                               </div>
                               <div class="form-group">
-                                  <input class="form-control" id="e1" placeholder="E-mail" name="email" type="email" value="" required>
+                                  <input class="form-control" id="e1" placeholder="E-mail" name="email" type="email" required>
                               </div>
                               <div class="form-group">
-                                  <input class="form-control" id="e2" placeholder="Confirm E-mail" name="email2" type="email" value="" onkeyup="CheckEm()" required>
-                              </div>
-                              <div class="form-group">
-                                  <input class="form-control" id="pswd1" placeholder="Password" name="password" type="password" value="" required>
-                              </div>
-                              <div class="form-group">
-                                  <input class="form-control" id="pswd2" placeholder="Confirm Password" name="password2" type="password" value="" required>
+                                  <input class="form-control" id="e2" placeholder="Confirm E-mail" name="email2" type="email" onkeyup="checkEmail()" required>
                                   <span id="validate-status"></span>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="pass1" placeholder="Password" name="password" type="password" required>
+                              </div>
+                              <div class="form-group">
+                                  <input class="form-control" id="pass2" placeholder="Confirm Password" name="password2" type="password" onkeyup="checkPass(); return false" required>
+                                  <span id="validate-status2"></span>
                                   <hr>
                               </div>
                               <!-- Change this to a button or input when using this as a form -->
