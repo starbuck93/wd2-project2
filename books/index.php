@@ -1,3 +1,10 @@
+<?php
+
+include 'view_books.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,9 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
 	<body>
@@ -54,12 +59,12 @@
                 <div class="product col-sm-6">
                   <a href="#"><img class="img-responsive" src="../img/book.png"><i class="btn btn-product fa fa-star"></i></a>
 					<hr>
-                    <h2>Book Title</h2>
-										<p>Description</p>
-										<p>Author</p>
-										<p>ISBN</p>
+                    <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
+										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
+										<p>By: <?php printf("%s",$thisresult[0][2]); ?></p> <!--author-->
+										<p>ISBN-10: <?php printf("%s",$thisresult[0][0]); ?></p> <!--isbn-->
                     <hr>
-                  	<h2 class="text-right">$39</h2>
+                  	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
 										<button class="btn btn-primary btn-lg ">Add to Cart</button>
 										<button class="btn btn-success btn-lg ">Add to Wishlist</button>
                     <hr>

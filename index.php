@@ -1,4 +1,5 @@
 <?php
+  include 'books/view_books.php';
   $signedin = false;
   session_start()
 ?>
@@ -12,25 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
+    <link rel="icon" href="favicon.ico">
     <title>Amazon Wanna-Be</title>
-
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="css/jumbotron.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -79,22 +66,36 @@
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
+      <!-- row of books -->
+      <?php
+      $random1 = rand(0,13);
+      $random2 = rand(0,13);
+      $random3 = rand(0,13);
+      ?>
       <div class="row">
         <div class="col-md-4">
           <img src="img/book.png" class="img-responsive" alt="Responsive image">
-          <p>Read me! I'm a book description.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><?php printf("%s",$thisresult[$random1][1]);?></p>
+          <form action="books/index.php" method="POST">
+          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <input type="hidden" name="isbn" value="<?php echo $thisresult[$random1][0]; ?>">
+          </form>
         </div>
         <div class="col-md-4">
           <img src="img/book.png" class="img-responsive" alt="Responsive image">
-          <p>Read me! I'm a book description.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><?php printf("%s",$thisresult[$random2][1]);?></p>
+          <form action="books/index.php" method="POST">
+          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <input type="hidden" name="isbn" value="<?php echo $thisresult[$random2][0]; ?>">
+          </form>
        </div>
         <div class="col-md-4">
           <img src="img/book.png" class="img-responsive" alt="Responsive image">
-          <p>Read me! I'm a book description.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><?php printf("%s",$thisresult[$random3][1]);?></p>
+          <form action="books/index.php" method="POST">
+          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <input type="hidden" name="isbn" value="<?php echo $thisresult[$random3][0]; ?>">
+          </form>
         </div>
       </div>
 
