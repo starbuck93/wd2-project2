@@ -1,4 +1,9 @@
-
+<?php
+  //REDIRECTS TO INDEX PAGE IF NO ONE LOGS IN
+  //ASSUME A SESSION HAS ALREADY BEEN STARTED
+  //include('redirect_to_home.php');
+  session_start();   
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,13 +44,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <!--a class="navbar-brand" href="#">Project name</a-->
+          <?php
+            //SHOWS USER'S NAME
+            echo "<a class='navbar-brand' href='#'>Hello, ".$_SESSION['name']."</a>";
+          ?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="logout.php">Log out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -19,8 +19,7 @@
 	else{
 	//USERNAME AND PASSWORD CONFIRMED
 		$row = $result->fetch_assoc();
-		$_SESSION['email']=$row['email'];
-		echo "SUCCESS!!";
+		$_SESSION['name']=$row['name'];
 		header("Location: template.php");
 			
 	}

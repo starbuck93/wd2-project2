@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	unset($_SESSION['email']);
-	unset($_SESSION['role']);
+	unset($_SESSION['name']);
 	header("Location: index.php");
 ?>
