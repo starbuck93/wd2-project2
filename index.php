@@ -95,7 +95,7 @@
           <input type="hidden" name="isbn" value="<?php echo $thisresult[$random3][0]; ?>">
           </form>
         </div>
-      </div>
+    </div>
 
       <hr>
 
