@@ -20,7 +20,8 @@
 	//USERNAME AND PASSWORD CONFIRMED
 		$row = $result->fetch_assoc();
 		$_SESSION['name']=$row['name'];
-		header("Location: template.php");
+		$_SESSION['email']=$row['email'];
+		header("Location: main.php");
 			
 	}
 ?>

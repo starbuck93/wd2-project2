@@ -1,10 +1,13 @@
 <?php
+  //REDIRECTS TO INDEX PAGE IF NO ONE LOGS IN
+  //ASSUME A SESSION HAS ALREADY BEEN STARTED
+  //include('redirect_to_home.php');
   include 'books/view_books.php';
-  $signedin = false;
   session_start();
+  //NAVIGATION
+  
+          
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Index</title>
+    <title>Home</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/jumbotron.css" rel="stylesheet">
     <script src="js/ie-emulation-modes-warning.js"></script>
@@ -31,27 +34,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href=".">Amazon Wanna-Be</a>
+          <a class="navbar-brand" href="#"><?php echo "<a class='navbar-brand' href='#'>Hello, ".$_SESSION['name']."</a>";?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <!--------------------------------------FORM-------------------------------------------------->
-          <form action="log.php" class="navbar-form navbar-right" method="POST">
-            <div class="form-group">
-              <input type="email" placeholder="Email" class="form-control" name="email" required>
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-            <a role="button" href="register.php" class="btn btn-default">Register</a>
-            <?php
-              //INVALID USERNAME, PASSWORD MESSAGE
-              if (isset($_SESSION['invalid'])){
-                echo "<p style='color:red; margin:5px'>".$_SESSION['invalid']."</p><br>";
-                unset($_SESSION['invalid']);
-              }
-            ?>
-          </form>
+          	<ul class="nav navbar-nav">
+            	<li class="active"><a href="#">Home</a></li>
+            	<li><a href="#about">Wish List</a></li>
+            	<li><a href="cart.php">Cart</a></li>
+            	<li><a href="logout.php">Sign Out</a></li>
+          	</ul>
+        </div><!--/.nav-collapse -->
+          
         </div><!--/.navbar-collapse -->
       </div>
     </nav>

@@ -55,7 +55,7 @@ if ($row_cnt > 6) {
 					<div class="form-group">
 						<input type="text" placeholder="Search!" class="form-control">
 					</div>
-					<button type="submit" class="btn btn-success">Sign in</button>
+					<button type="submit" class="btn btn-success">Search</button>
 				</form>
 			</div>
     </div>

@@ -2,7 +2,8 @@
   //REDIRECTS TO INDEX PAGE IF NO ONE LOGS IN
   //ASSUME A SESSION HAS ALREADY BEEN STARTED
   //include('redirect_to_home.php');
-  session_start();   
+  session_start();
+  require_once('DBQuery.php');   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Cart</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -52,24 +53,29 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
+            <li><a href="main.php">Home</a></li>
             <li><a href="#about">Wish List</a></li>
-            <li><a href="#contact">Cart</a></li>
+            <li class="active"><a href="#">Cart</a></li>
             <li><a href="logout.php">Sign Out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-    <div class="container">
-
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
-
-    </div><!-- /.container -->
-
+    <?php
+        $query = "SELECT * FROM `user` WHERE `email` = '".$_SESSION['email']."';";
+        $fetch = new DBQuery($query);
+        $fetch->execute_query();
+        $result=$fetch->get_result();
+        $row = $result->fetch_assoc();
+        if(is_null($row['cart'])||$row['cart']===''){
+          echo "<div class='container'>
+                  <div class='starter-template'>
+                    <h1>Shopping Cart</h1>
+                    <p class='lead'>Your Shopping Cart is empty.</p>
+                  </div>
+                </div><!-- /.container -->";
+        }
+    ?>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
