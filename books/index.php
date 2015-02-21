@@ -1,7 +1,20 @@
 <?php
 
 include 'view_books.php';
-
+$row_cnt = 0;
+$bookAndReview = getBooksAndReviews($book_request,$row_cnt);
+        // $bookAndReview[0][0] ||==|| isbn;
+        // $bookAndReview[0][1] ||==|| title;
+        // $bookAndReview[0][2] ||==|| author;
+        // $bookAndReview[0][3] ||==|| category;
+        // $bookAndReview[0][4] ||==|| summary;
+        // $bookAndReview[0][5] ||==|| imgtitle;        
+        // $bookAndReview[0][6] ||==|| rateing; //review data
+        // $bookAndReview[0][7] ||==|| comment; //review data
+        // $bookAndReview[0][8] ||==|| name; //review data
+if ($row_cnt > 6) {
+  $row_cnt = 5;
+}
 ?>
 
 
@@ -80,10 +93,9 @@ include 'view_books.php';
 
                         <h4>Buyer Reviews</h4>
                         <ul class="list-unstyled">
-                          <li class="clearfix">(Mike R.) I bought this last month before a.. <i class="fa fa-star fa-2x yellow pull-right"></i></li>
-                          <li class="clearfix">(Karen) The size of this jacket was a little larger.. <i class="fa fa-star fa-2x yellow pull-right"></i></li>
-                          <li class="clearfix">(CAS) I love this jacket. I purchased this as part..  <i class="fa fa-star fa-2x yellow pull-right"></i><i class="fa fa-star fa-2x yellow pull-right"></i><i class="fa fa-star fa-2x yellow pull-right"></i></li>
-                          <li class="clearfix">(William D.) Great value with cool style. If you want.. <i class="fa fa-star fa-2x yellow pull-right"></i><i class="fa fa-star fa-2x yellow pull-right"></i><i class="fa fa-star fa-2x yellow pull-right"></i><i class="fa fa-star fa-2x yellow pull-right"></i></li>
+                        <?php for ($i=0; $i < $row_cnt; $i++) { ?>
+                          <li class="clearfix">(<?php print($bookAndReview[$i][8]) ?>) <?php print($bookAndReview[$i][7]); for ($j=0; $j < $bookAndReview[$i][6]; $j++) { echo "<i class=\"fa fa-star fa-2x yellow pull-right\"></i>"; }?> </li>
+                        <?php }?>
                         </ul>
 
                       </div>

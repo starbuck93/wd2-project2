@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Amazon Wanna-Be</a>
+          <a class="navbar-brand" href=".">Amazon Wanna-Be</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!--------------------------------------FORM-------------------------------------------------->
@@ -67,10 +67,9 @@
 
     <div class="container">
       <!-- row of books -->
-      <?php
-      $random1 = rand(0,13);
-      $random2 = rand(0,13);
-      $random3 = rand(0,13);
+      <?php $random1 = rand(0,13); 
+            $random2 = rand(0,13); 
+            $random3 = rand(0,13);
       ?>
       <div class="row">
         <div class="col-md-4">

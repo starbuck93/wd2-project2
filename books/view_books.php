@@ -30,7 +30,7 @@ function getBooks($isbn,$query){
     if you don't specify a query, the $isbn will be used to return one book's data*/
 
     if($query == "")
-        $query = "SELECT * from book WHERE isbn = $isbn";
+        $query = "SELECT * FROM book WHERE isbn = $isbn"; //INNTER JOIN review ON isbn = book_id
     
     $link = new mysqli("localhost","root","","amazon");
     $result = $link->query($query);
@@ -53,12 +53,63 @@ function getBooks($isbn,$query){
         $result_array[$i][2] = $obj->author;
         $result_array[$i][3] = $obj->category;
         $result_array[$i][4] = $obj->summary;
-        $result_array[$i][5] = $obj->imgtitle;
+        $result_array[$i][5] = $obj->imgtitle;        
+        // $result_array[$i][6] = $obj->user_id; //review data
+        // $result_array[$i][7] = $obj->book_id; //review data
+        // $result_array[$i][8] = $obj->rate; //review data
+        // $result_array[$i][9] = $obj->comment; //review data
         $i++;
     }
     return $result_array;
 }
 
+
+function getBooksAndReviews($isbn,&$row_cnt){
+    /*usage:
+    array = getBooks(string);
+    array = getBooks("0618574948")
+
+    if you don't specify a query, the $isbn will be used to return one book's data*/
+
+    //first make sure there are actually reviews for the book, otherwise return false or something
+
+
+    //else, query this
+
+    $query = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE isbn=$isbn";
+
+    
+    $link = new mysqli("localhost","root","","amazon");
+    $result = $link->query($query);
+    
+    if(!$result)
+        die ($link->error);
+    
+    $row_cnt = $result->num_rows;
+    //echo $row_cnt;
+
+    if($row_cnt == 0){
+        print("It's Empty"); //this should never happen, basically
+    }
+
+    $i=0;
+    /* fetch object array */
+    $result_array = array();
+    while ($obj = $result->fetch_object()) {
+        $result_array[$i][0] = $obj->isbn;
+        $result_array[$i][1] = $obj->title;
+        $result_array[$i][2] = $obj->author;
+        $result_array[$i][3] = $obj->category;
+        $result_array[$i][4] = $obj->summary;
+        $result_array[$i][5] = $obj->imgtitle;        
+        //these will be null if non existant
+        $result_array[$i][6] = $obj->rate; //review stars as an integer
+        $result_array[$i][7] = $obj->comment; //reviewer's comment
+        $result_array[$i][8] = $obj->name; //reviewer
+        $i++;
+    }
+    return $result_array;
+}
 
 
 if($book_request){    
@@ -76,3 +127,4 @@ else $thisresult = getBooks($book_request,"SELECT * from book");
     // }
 
 ?>
+
