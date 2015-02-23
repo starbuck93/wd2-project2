@@ -13,7 +13,7 @@ $bookAndReview = getBooksAndReviews($book_request,$row_cnt);
         // $bookAndReview[0][7] ||==|| comment; //review data
         // $bookAndReview[0][8] ||==|| name; //review data
 if ($row_cnt > 6) {
-  $row_cnt = 5;
+  $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
 }
 ?>
 
@@ -23,7 +23,7 @@ if ($row_cnt > 6) {
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Ecommerce Template</title>
+		<title> Amazon Wanna-Be: <?php print($bookAndReview[0][1]);?></title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@ if ($row_cnt > 6) {
             </ul>
 
         <!--/.nav-collapse -->
-				<form action="search.php" class="navbar-form navbar-right">
+				<form action="search.php" class="navbar-form navbar-right"> <!--The search.php page should be similar to this page... without the main book. Maybe a grid or list of results-->
 					<div class="form-group">
 						<input type="text" placeholder="Search!" class="form-control">
 					</div>
