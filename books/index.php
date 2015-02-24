@@ -15,7 +15,9 @@ $bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
 if ($row_cnt > 6) {
   $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
 }
-$myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category=$bookAndReview[0][3] ";
+$category = $bookAndReview[0][3];
+$title = $bookAndReview[0][1];
+$myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category='$category' AND title != '$title'";
 $otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
         // $otherBooks[#][0] ||==|| isbn;
         // $otherBooks[#][1] ||==|| title;
@@ -26,8 +28,8 @@ $otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
         // $otherBooks[#][6] ||==|| rateing; //review data
         // $otherBooks[#][7] ||==|| comment; //review data
         // $otherBooks[#][8] ||==|| name; //review data
-if ($row_cnt_other > 6) {
-  $row_cnt_other = 5; //limit the number of extra books to show
+if ($row_cnt_other > 7) {
+  $row_cnt_other = 6; //limit the number of extra books to show
 }
 ?>
 
@@ -84,7 +86,7 @@ if ($row_cnt_other > 6) {
         <div class="container">
             <div class="menu row">
                 <div class="product col-sm-6">
-                  <a href="#"><img style="max-height: 350px;" src="<?php print($bookAndReview[0][5]);?>"></a>
+                  <a href="#"><img style="max-height: 500px;" src="<?php print($bookAndReview[0][5]);?>"></a>
 					<hr>
                     <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
 										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
@@ -122,56 +124,30 @@ if ($row_cnt_other > 6) {
 
                 </div>
                 <div class="col-sm-6">
-                  <p class="text-center">Other Books in this Category</p>
+                  <h4 class="text-center">Other Books in this Category</h4>
                     <div class="productsrow">
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Accessories</div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Belt<span class="badge">£28</span></a>
-                        </div>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Jeans</div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Dark Blue Jeans<span class="badge">$80</span></a>
+                        <?php
 
-                        </div>
+                          if($row_cnt_other == 0)
+                            print("<p>Found none.</p>");
+                          for ($i=0; $i < $row_cnt_other; $i++) { 
+        // $otherBooks[$i][0] ||==|| isbn;
+        // $otherBooks[$i][1] ||==|| title;
+        // $otherBooks[$i][2] ||==|| author;
+        // $otherBooks[$i][3] ||==|| category;
+        // $otherBooks[$i][4] ||==|| summary;
+        // $otherBooks[$i][5] ||==|| imgtitle;        
+        // $otherBooks[$i][6] ||==|| rateing; //review data
+        // $otherBooks[$i][7] ||==|| comment; //review data
+        // $otherBooks[$i][8] ||==|| name; //review data
+                        ?>
                         <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Pants</div>
+                            <div class="menu-category-name list-group-item active"><?php print($otherBooks[$i][3])?></div>
                             <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Light Grean Chinos<span class="badge">$59</span></a>
-
+                                <img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5])?>">
+                            </div> <a href="./?isbn=<?php print($otherBooks[$i][0])?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
                         </div>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Denim</div>
-                            <div class="div-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Denim Jacket<span class="badge">$56</span></a>
-
-                        </div>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Accessories</div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Socks<span class="badge">$56</span></a>
-
-                        </div>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Belt</div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Brown Belt<span class="badge">£18</span></a>
-
-                        </div>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active">Layer</div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="../img/book.png">
-                            </div> <a href="#" class="menu-item list-group-item">Shawl Neck<span class="badge">46</span></a>
-
-                        </div>
+                        <?php }; ?>
                     </div>
                 </div>
             </div>
@@ -180,85 +156,6 @@ if ($row_cnt_other > 6) {
         <!--/container-->
     </div>
 </div>
-
-<hr>
-
-<div class="container">
-
-             <div class="row">
-
-               <div class="col-sm-3">
-                 <a href="#">
-                   <br/>
-                   <img class="img-responsive" src="../img/book.png" data-alt="" data-title="">
-                 </a>
-                 <br>
-
-                </div>
-                <div class="col-sm-9">
-
-                  <h2><a class="url" href="#"> Gentleman's Socks</a></h2>
-
-                  <ul class="list-group ticketView">
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Color</span>
-                          <label> Oatmeal</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Material</span>
-                          <label> Cotton</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Sizes</span>
-                          <label> Mens's 5-10, 8-12</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Stock #</span>
-                           N12325
-                      </li>
-                  </ul>
-
-                </div><!--/col-->
-            </div><!--/row-->
-
-            <div class="row">
-
-               <div class="col-sm-3">
-                 <a href="#">
-                   <br/>
-                   <img class="img-responsive" src="../img/book.png" data-alt="" data-title="">
-                 </a>
-                 <br>
-
-                </div>
-                <div class="col-sm-9">
-
-                  <h2><a class="url" href="#"> Gentleman's Socks</a></h2>
-
-                  <ul class="list-group ticketView">
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Color</span>
-                          <label> Oatmeal</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Material</span>
-                          <label> Cotton</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Sizes</span>
-                          <label> Mens's 5-10, 8-12</label>
-                      </li>
-                      <li class="list-group-item ticketView">
-                          <span class="label label-default">Stock #</span>
-                           N12325
-                      </li>
-                  </ul>
-
-                </div><!--/col-->
-            </div><!--/row-->
-
-            <hr>
-</div><!--/container-->
 
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">

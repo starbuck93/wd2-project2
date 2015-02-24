@@ -85,7 +85,7 @@ function getBooksAndReviews($isbn,$query,&$row_cnt){
     //echo $row_cnt;
 
     if($row_cnt == 0){
-        print("It's Empty"); //this should never happen, basically
+        return 0;
     }
 
     $i=0;

@@ -38,8 +38,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-            	<li class="active"><a href="#">Home</a></li>
-            	<li><a href="#about">Wish List</a></li>
+            	<li class="active"><a href="main.php">Home</a></li>
+            	<li><a href="#wishlist">Wish List</a></li>
             	<li><a href="cart.php">Cart</a></li>
             	<li><a href="logout.php">Sign Out</a></li>
           	</ul>
@@ -62,10 +62,14 @@
       <?php $random1 = rand(0,13); 
             $random2 = rand(0,13); 
             $random3 = rand(0,13);
+            if($random1 == $random2 || $random1 == $random3 || $random2 == $random3){
+              $random1 = rand(0,5);
+              $random2 = rand(6,9);
+              $random3 = rand(10,13);}
       ?>
       <div class="row">
         <div class="col-md-4">
-          <img src="img/book.png" class="img-responsive" alt="Responsive image">
+          <img src="<?php print($thisresult[$random1][5]);?>" height="300" alt='<?php printf("%s",$thisresult[$random1][1]);?>' >
           <p><?php printf("%s",$thisresult[$random1][1]);?></p>
           <form action="books/index.php" method="POST">
           <button class="btn btn-default" type="submit">View details &raquo;</button>
@@ -73,7 +77,7 @@
           </form>
         </div>
         <div class="col-md-4">
-          <img src="img/book.png" class="img-responsive" alt="Responsive image">
+          <img src="<?php print($thisresult[$random2][5]);?>" height="300" alt='<?php printf("%s",$thisresult[$random2][1]);?>' >
           <p><?php printf("%s",$thisresult[$random2][1]);?></p>
           <form action="books/index.php" method="POST">
           <button class="btn btn-default" type="submit">View details &raquo;</button>
@@ -81,7 +85,7 @@
           </form>
        </div>
         <div class="col-md-4">
-          <img src="img/book.png" class="img-responsive" alt="Responsive image">
+          <img src="<?php print($thisresult[$random3][5]);?>" height="300" alt='<?php printf("%s",$thisresult[$random3][1]);?>' >
           <p><?php printf("%s",$thisresult[$random3][1]);?></p>
           <form action="books/index.php" method="POST">
           <button class="btn btn-default" type="submit">View details &raquo;</button>
