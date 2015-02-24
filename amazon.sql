@@ -76,7 +76,20 @@ CREATE TABLE IF NOT EXISTS `review` (
 
 INSERT INTO `review` (`user_id`, `book_id`, `rate`, `comment`) VALUES
 ('1', '0464832557', 2, 'It''s okay I guess.'),
-('2', '0464832557', 5, 'This book is pretty cool and stuff');
+('2', '0464832557', 5, 'This book is pretty cool and stuff'),
+('1', '0441013597', 1, 'test post please ignore'),
+('1', '0441104029', 1, 'test post please ignore'),
+('1', '0451458737', 1, 'test post please ignore'),
+('1', '0465067107', 1, 'test post please ignore'),
+('1', '0618574948', 1, 'test post please ignore'),
+('1', '0618574956', 1, 'test post please ignore'),
+('1', '0618574972', 1, 'test post please ignore'),
+('1', '0687650194', 1, 'test post please ignore'),
+('1', '1414334907', 1, 'test post please ignore'),
+('1', '1453606122', 1, 'test post please ignore'),
+('1', '1470184788', 1, 'test post please ignore'),
+('1', '1595550789', 1, 'test post please ignore'),
+('1', '1613821743', 1, 'test post please ignore');
 
 -- --------------------------------------------------------
 

@@ -64,21 +64,17 @@ function getBooks($isbn,$query){
 }
 
 
-function getBooksAndReviews($isbn,&$row_cnt){
+function getBooksAndReviews($isbn,$query,&$row_cnt){
     /*usage:
-    array = getBooks(string);
-    array = getBooks("0618574948")
+    array = getBooks(string,string,int);
+    array = getBooks("0618574948","",0)
 
     if you don't specify a query, the $isbn will be used to return one book's data*/
 
-    //first make sure there are actually reviews for the book, otherwise return false or something
-
-
     //else, query this
+    if($query == "")
+        $query = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE isbn=$isbn";
 
-    $query = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE isbn=$isbn";
-
-    
     $link = new mysqli("localhost","root","","amazon");
     $result = $link->query($query);
     

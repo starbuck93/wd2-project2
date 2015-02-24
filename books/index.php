@@ -2,7 +2,7 @@
 
 include 'view_books.php';
 $row_cnt = 0;
-$bookAndReview = getBooksAndReviews($book_request,$row_cnt);
+$bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
         // $bookAndReview[0][0] ||==|| isbn;
         // $bookAndReview[0][1] ||==|| title;
         // $bookAndReview[0][2] ||==|| author;
@@ -14,6 +14,20 @@ $bookAndReview = getBooksAndReviews($book_request,$row_cnt);
         // $bookAndReview[0][8] ||==|| name; //review data
 if ($row_cnt > 6) {
   $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
+}
+$myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category=$bookAndReview[0][3] ";
+$otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
+        // $otherBooks[#][0] ||==|| isbn;
+        // $otherBooks[#][1] ||==|| title;
+        // $otherBooks[#][2] ||==|| author;
+        // $otherBooks[#][3] ||==|| category;
+        // $otherBooks[#][4] ||==|| summary;
+        // $otherBooks[#][5] ||==|| imgtitle;        
+        // $otherBooks[#][6] ||==|| rateing; //review data
+        // $otherBooks[#][7] ||==|| comment; //review data
+        // $otherBooks[#][8] ||==|| name; //review data
+if ($row_cnt_other > 6) {
+  $row_cnt_other = 5; //limit the number of extra books to show
 }
 ?>
 
@@ -100,20 +114,21 @@ if ($row_cnt > 6) {
 
                       </div>
                       <div class="tab-pane" id="details"><h4>Product Information</h4>
-												<p>Details details details</p>
+                        <p>You're paying for a brand new, used book.</p>
+												<p>Shipping costs $40 the first time, and $0 every time after that for A WHOLE YEAR. So you better enjoy paying for memberships because that's basically what this is.</p>
 											</div>
                      </div>
 
 
                 </div>
                 <div class="col-sm-6">
+                  <p class="text-center">Other Books in this Category</p>
                     <div class="productsrow">
                         <div class="product menu-category">
                             <div class="menu-category-name list-group-item active">Accessories</div>
                             <div class="product-image">
                                 <img class="product-image menu-item list-group-item" src="../img/book.png">
                             </div> <a href="#" class="menu-item list-group-item">Belt<span class="badge">£28</span></a>
-
                         </div>
                         <div class="product menu-category">
                             <div class="menu-category-name list-group-item active">Jeans</div>

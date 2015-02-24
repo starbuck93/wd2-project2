@@ -34,7 +34,7 @@
           <a class="navbar-brand" href=".">Amazon Wanna-Be</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <!--------------------------------------FORM-------------------------------------------------->
+          <!--====================================FORM====================================-->
           <form action="log.php" class="navbar-form navbar-right" method="POST">
             <div class="form-group">
               <input type="email" placeholder="Email" class="form-control" name="email" required>
