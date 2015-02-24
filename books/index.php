@@ -70,7 +70,7 @@ if ($row_cnt > 6) {
         <div class="container">
             <div class="menu row">
                 <div class="product col-sm-6">
-                  <a href="#"><img class="img-responsive" src="../img/book.png"><i class="btn btn-product fa fa-star"></i></a>
+                  <a href="#"><img style="max-height: 350px;" src="<?php print($bookAndReview[0][5]);?>"></a>
 					<hr>
                     <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
 										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
