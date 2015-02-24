@@ -71,13 +71,14 @@ $otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
         </div>
         <div class="container">
             <div class="menu row">
-                <div class="col-sm-12">
-                  <h4 class="text-center">Search Results</h4>
-                    <div class="productsrow">
-                        <?php
+                <div class="col-sm-12 ">
+                <?php
 
                           if($row_cnt_other == 0)
                             print("<p>Enter a new search or refine your current search.</p>");
+                ?>
+                    <div class="productsrow">
+                        <?php
                           for ($i=0; $i < $row_cnt_other; $i++) { 
                         ?>
                         <div class="product menu-category">

@@ -18,23 +18,6 @@ $obj = $result->fetch_object();
   $user_id = $obj->id;
   $name = $obj->name;
 
-if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
-  $rating = $_REQUEST["rating"];
-  $review = $_REQUEST["reviewPost"];
-  $myQuery = "INSERT INTO review (user_id, book_id, rate, comment) VALUES ($user_id,.$bookAndReview[0][0].,$rating,$review)";
-
-  $link = new mysqli("localhost","root","","amazon"); /*for local testing only*/
-  //link database
-  if ($link->connect_errno) {
-      printf("Connect failed: %s\n", $link->connect_error);
-      exit();
-  }
-  $result = $link->query($myQuery);
-  if(!$result)
-    die ($link->error);
-    
-}
-
 $row_cnt = 0;
 $bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
         // $bookAndReview[0][0] ||==|| isbn;
@@ -49,6 +32,26 @@ $bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
 if ($row_cnt > 6) {
   $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
 }
+
+if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
+  $rating = $_REQUEST["rating"];
+  $review = $_REQUEST["reviewPost"];
+  $isbn = $_REQUEST["isbn"];
+  $myQuery = "INSERT INTO review (user_id, book_id, rate, comment) VALUES ($user_id,$isbn,$rating,\"$review\")";
+
+  $link = new mysqli("localhost","root","","amazon"); /*for local testing only*/
+  //link database
+  if ($link->connect_errno) {
+      printf("Connect failed: %s\n", $link->connect_error);
+      exit();
+  }
+  $result = $link->query($myQuery);
+  if(!$result)
+    die ($link->error);
+    
+}
+
+
   $category = $bookAndReview[0][3];
   $title = $bookAndReview[0][1];
   $myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category='$category' AND title != '$title'";
@@ -111,7 +114,7 @@ if ($row_cnt_other > 7) {
         <div class="container">
             <div class="menu row">
                 <div class="product col-sm-6">
-                  <a href="#"><img style="max-height: 500px;" src="<?php print($bookAndReview[0][5]);?>"></a>
+                  <a href="index.php?isbn=<?php printf("%s",$thisresult[0][0]); ?>"><img style="max-height: 500px;" src="<?php print($bookAndReview[0][5]);?>"></a>
 					<hr>
                     <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
 										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
@@ -146,6 +149,7 @@ if ($row_cnt_other > 7) {
 												<p>Shipping costs $40 the first time, and $0 every time after that for A WHOLE YEAR. So you better enjoy paying for memberships because that's basically what this is.</p>
 											</div>
                       <div class="tab-pane" id="addreview"><h4>Add A Review</h4>
+                        <?php //don't let users add multiple reviews?>
                         <form id="review" action="index.php" method="POST">
                           <div class="starRating"> <!--http://code.stephenmorley.org/html-and-css/star-rating-widget/-->
                             <div>
@@ -169,8 +173,10 @@ if ($row_cnt_other > 7) {
                           </div>
                           <textarea form="review" name="reviewPost" rows="3" cols="50" required></textarea>
                             <label for="reviewPost"><?php print($name);?>, your name will be submitted along with this review.</label>
+                          <input type="hidden" name="isbn" value="<?php printf("%s",$thisresult[0][0]); ?>">
                           <input type="submit" name="submit" value="Submit">
                         </form>
+
                       </div>
                      </div>
 
