@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `book` (
   `isbn` varchar(20) NOT NULL,
   `title` varchar(200) NOT NULL,
-  `author` varchar(20) NOT NULL,
+  `author` varchar(25) NOT NULL,
   `category` varchar(200) NOT NULL,
   `summary` varchar(255) DEFAULT NULL,
   `imgtitle` varchar(255) NOT NULL,
