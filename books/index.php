@@ -1,6 +1,40 @@
 <?php
+session_start();
 
 include 'view_books.php';
+
+$email = $_SESSION['email'];
+
+$link = new mysqli("localhost","root","","amazon"); /*for local testing only*/
+$query = "SELECT id, name FROM user WHERE email = '$email'";
+  if ($link->connect_errno) {
+      printf("Connect failed: %s\n", $link->connect_error);
+      exit();
+    }
+$result = $link->query($query);
+  if(!$result)
+    die ($link->error);
+$obj = $result->fetch_object();
+  $user_id = $obj->id;
+  $name = $obj->name;
+
+if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
+  $rating = $_REQUEST["rating"];
+  $review = $_REQUEST["reviewPost"];
+  $myQuery = "INSERT INTO review (user_id, book_id, rate, comment) VALUES ($user_id,.$bookAndReview[0][0].,$rating,$review)";
+
+  $link = new mysqli("localhost","root","","amazon"); /*for local testing only*/
+  //link database
+  if ($link->connect_errno) {
+      printf("Connect failed: %s\n", $link->connect_error);
+      exit();
+  }
+  $result = $link->query($myQuery);
+  if(!$result)
+    die ($link->error);
+    
+}
+
 $row_cnt = 0;
 $bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
         // $bookAndReview[0][0] ||==|| isbn;
@@ -15,19 +49,10 @@ $bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
 if ($row_cnt > 6) {
   $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
 }
-$category = $bookAndReview[0][3];
-$title = $bookAndReview[0][1];
-$myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category='$category' AND title != '$title'";
+  $category = $bookAndReview[0][3];
+  $title = $bookAndReview[0][1];
+  $myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category='$category' AND title != '$title'";
 $otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
-        // $otherBooks[#][0] ||==|| isbn;
-        // $otherBooks[#][1] ||==|| title;
-        // $otherBooks[#][2] ||==|| author;
-        // $otherBooks[#][3] ||==|| category;
-        // $otherBooks[#][4] ||==|| summary;
-        // $otherBooks[#][5] ||==|| imgtitle;        
-        // $otherBooks[#][6] ||==|| rateing; //review data
-        // $otherBooks[#][7] ||==|| comment; //review data
-        // $otherBooks[#][8] ||==|| name; //review data
 if ($row_cnt_other > 7) {
   $row_cnt_other = 6; //limit the number of extra books to show
 }
@@ -62,14 +87,14 @@ if ($row_cnt_other > 7) {
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="." class="" style="">Explore</a></li>
-                <li><a href="#" class="">Search</a></li>
+                <li><a href="search.php" class="">Search</a></li>
                 <li><a href="#" class="">About</a></li>
             </ul>
 
         <!--/.nav-collapse -->
-				<form action="search.php" class="navbar-form navbar-right"> <!--The search.php page should be similar to this page... without the main book. Maybe a grid or list of results-->
+				<form action="search.php" method="GET" class="navbar-form navbar-right"> <!--The search.php page should be similar to this page... without the main book. Maybe a grid or list of results-->
 					<div class="form-group">
-						<input type="text" placeholder="Search!" class="form-control">
+						<input type="text" name="search" placeholder="Search!" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">Search</button>
 				</form>
@@ -101,6 +126,7 @@ if ($row_cnt_other > 7) {
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#reviews">Reviews</a></li>
+                        <li><a data-toggle="tab" href="#addreview">Add A Review</a></li>
                         <li><a data-toggle="tab" href="#details">Details</a></li>
                     </ul>
 
@@ -111,7 +137,7 @@ if ($row_cnt_other > 7) {
                         <ul class="list-unstyled">
                         <?php for ($i=0; $i < $row_cnt; $i++) { ?>
                           <li class="clearfix">(<?php print($bookAndReview[$i][8]) ?>) <?php print($bookAndReview[$i][7]); for ($j=0; $j < $bookAndReview[$i][6]; $j++) { echo "<i class=\"fa fa-star fa-2x yellow pull-right\"></i>"; }?> </li>
-                        <?php }?>
+                        <?php } ?>
                         </ul>
 
                       </div>
@@ -119,6 +145,33 @@ if ($row_cnt_other > 7) {
                         <p>You're paying for a brand new, used book.</p>
 												<p>Shipping costs $40 the first time, and $0 every time after that for A WHOLE YEAR. So you better enjoy paying for memberships because that's basically what this is.</p>
 											</div>
+                      <div class="tab-pane" id="addreview"><h4>Add A Review</h4>
+                        <form id="review" action="index.php" method="POST">
+                          <div class="starRating"> <!--http://code.stephenmorley.org/html-and-css/star-rating-widget/-->
+                            <div>
+                              <div>
+                                <div>
+                                  <div>
+                                    <input id="rating1" type="radio" name="rating" value="1">
+                                    <label for="rating1"><span>1</span></label>
+                                  </div>
+                                  <input id="rating2" type="radio" name="rating" value="2">
+                                  <label for="rating2"><span>2</span></label>
+                                </div>
+                                <input id="rating3" type="radio" name="rating" value="3">
+                                <label for="rating3"><span>3</span></label>
+                              </div>
+                              <input id="rating4" type="radio" name="rating" value="4">
+                              <label for="rating4"><span>4</span></label>
+                            </div>
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5"><span>5</span></label>
+                          </div>
+                          <textarea form="review" name="reviewPost" rows="3" cols="50" required></textarea>
+                            <label for="reviewPost"><?php print($name);?>, your name will be submitted along with this review.</label>
+                          <input type="submit" name="submit" value="Submit">
+                        </form>
+                      </div>
                      </div>
 
 
@@ -142,12 +195,12 @@ if ($row_cnt_other > 7) {
         // $otherBooks[$i][8] ||==|| name; //review data
                         ?>
                         <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active"><?php print($otherBooks[$i][3])?></div>
+                            <div class="menu-category-name list-group-item active"><?php print($otherBooks[$i][3]);?></div>
                             <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5])?>">
-                            </div> <a href="./?isbn=<?php print($otherBooks[$i][0])?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
+                                <img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5]);?>">
+                            </div> <a href="./?isbn=<?php print($otherBooks[$i][0]);?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1]);?><span class="badge">$<?php print(rand(1,50));?></span></a>
                         </div>
-                        <?php }; ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -157,35 +210,10 @@ if ($row_cnt_other > 7) {
     </div>
 </div>
 
-<div class="modal fade" id="myModal">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Log In</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-    		<label for="exampleInputEmail1">Email address</label>
-    		<input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
-  		  </div>
-		  <div class="form-group">
-		  	<label for="exampleInputPassword1">Password</label>
-			<input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
-		  </div>
-          <p class="text-right"><a href="#">Forgot password?</a></p>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-          <a href="#" class="btn btn-primary">Log-in</a>
-        </div>
-      </div>
-    </div>
-</div>
-
 <!--/template-->
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
+
