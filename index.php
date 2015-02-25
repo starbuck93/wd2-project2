@@ -79,7 +79,7 @@
           <img src="<?php print($thisresult[$random1][5]);?>" height="300" alt='<?php printf("%s",$thisresult[$random1][1]);?>' >
           <p><?php printf("%s",$thisresult[$random1][1]);?></p>
           <form action="books/index.php" method="POST">
-          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <button class="btn btn-default disabled" type="submit">Login to View details &raquo;</button>
           <input type="hidden" name="isbn" value="<?php echo $thisresult[$random1][0]; ?>">
           </form>
         </div>
@@ -87,7 +87,7 @@
           <img src="<?php print($thisresult[$random2][5]);?>" height="300" alt='<?php printf("%s",$thisresult[$random2][1]);?>' >
           <p><?php printf("%s",$thisresult[$random2][1]);?></p>
           <form action="books/index.php" method="POST">
-          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <button class="btn btn-default disabled" type="submit">Login to View details &raquo;</button>
           <input type="hidden" name="isbn" value="<?php echo $thisresult[$random2][0]; ?>">
           </form>
        </div>
@@ -95,7 +95,7 @@
           <img src="<?php print($thisresult[$random3][5]);?>" height="300" alt="<?php printf("%s",$thisresult[$random3][1]);?>" >
           <p><?php printf("%s",$thisresult[$random3][1]);?></p>
           <form action="books/index.php" method="POST">
-          <button class="btn btn-default" type="submit">View details &raquo;</button>
+          <button class="btn btn-default disabled" type="submit">Login to View details &raquo;</button>
           <input type="hidden" name="isbn" value="<?php echo $thisresult[$random3][0]; ?>">
           </form>
         </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2015 at 08:53 PM
+-- Generation Time: Feb 25, 2015 at 09:21 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -87,7 +87,10 @@ INSERT INTO `review` (`user_id`, `book_id`, `rate`, `comment`) VALUES
 ('1', '1470184788', 1, 'test post please ignore'),
 ('1', '1595550789', 1, 'test post please ignore'),
 ('1', '1613821743', 1, 'test post please ignore'),
-('2', '0464832557', 5, 'This book is pretty cool and stuff');
+('2', '0464832557', 5, 'This book is pretty cool and stuff'),
+('2', '0618574956', 3, 'Very long book'),
+('2', '0687650194', 5, 'Adam was here'),
+('2', '1453606122', 2, 'Kind of boring');
 
 -- --------------------------------------------------------
 

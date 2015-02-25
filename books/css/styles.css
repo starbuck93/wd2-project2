@@ -8,7 +8,8 @@ author: bootply.com
 */
 
 body {
- padding-top:70px;
+  padding-top:70px;
+  margin-bottom: 60px;
 }
 
 .productsrow {

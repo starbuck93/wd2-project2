@@ -37,7 +37,7 @@ if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
   $rating = $_REQUEST["rating"];
   $review = $_REQUEST["reviewPost"];
   $isbn = $_REQUEST["isbn"];
-  $myQuery = "INSERT INTO review (user_id, book_id, rate, comment) VALUES ($user_id,$isbn,$rating,\"$review\")";
+  $myQuery = "INSERT INTO review (user_id, book_id, rate, comment) VALUES ($user_id,\"$isbn\",$rating,\"$review\")";
 
   $link = new mysqli("localhost","root","","amazon"); /*for local testing only*/
   //link database
@@ -85,7 +85,7 @@ if ($row_cnt_other > 7) {
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../">Amazon Wanna-Be</a>
+            <a class="navbar-brand" href="../main.php">Amazon Wanna-Be</a>
         </div>
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">
