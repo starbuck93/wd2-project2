@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2015 at 09:21 PM
+-- Generation Time: Feb 25, 2015 at 09:53 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -49,7 +49,7 @@ INSERT INTO `book` (`isbn`, `title`, `author`, `category`, `summary`, `imgtitle`
 ('0618574956', 'The Two Towers', 'J.R.R. Tolkien', 'Fiction', 'With Gandalf dead the journey of the One Ring is in peril as the Fellowship splits up with Frodo and Sam getting closer to Mordor while Aragorn slowly realizes his own destiny.', 'http://ecx.images-amazon.com/images/I/51HUqZm3JTL._SY344_BO1,204,203,200_.jpg'),
 ('0618574972', 'The Return of the King', 'J.R.R. Tolkien', 'Fiction', 'The amazing story reaches its climax as Frodo and Sam go deeper into Mordor while Aragorn and Gandalf defend the last bastion of mankind from the dark forces of Sauron.', 'http://ecx.images-amazon.com/images/I/517FFFR0P1L.jpg'),
 ('0687650194', 'Prayers for a Privileged People', 'Walter Brueggemann', 'Christian Living', 'A beautiful collection of poetic and prophetic prayers to be prayed and pondered and savored and be challenged by.', 'http://ecx.images-amazon.com/images/I/415KaD3SC4L._SY344_BO1,204,203,200_.jpg'),
-('1414334907', 'Left Behind', 'Tim LaHaye', ' Fiction', 'A laughable book with a popularized and poorly informed reading of Revelation - oops...I mean it''s a riveting book about the "end times"!', 'http://ecx.images-amazon.com/images/I/51kKYGB8eiL._SY344_BO1,204,203,200_.jpg'),
+('1414334907', 'Left Behind', 'Tim LaHaye', 'Fiction', 'A laughable book with a popularized and poorly informed reading of Revelation - oops...I mean it''s a riveting book about the "end times"!', 'http://ecx.images-amazon.com/images/I/51kKYGB8eiL._SY344_BO1,204,203,200_.jpg'),
 ('1453606122', 'Autobiography of Benjamin Franklin', ' Benjamin Franklin', 'Autobiography', 'The life and times of one of the most important early American patriots.', 'http://ecx.images-amazon.com/images/I/41LPkbCO1tL._SY344_BO1,204,203,200_.jpg'),
 ('1470184788', 'Dark Night of the Soul', 'St. John of the Cross', 'Christian Living', 'Faith and doubt collide in this classic work by one of Christianity''s most celebrated mystics.', 'http://ecx.images-amazon.com/images/I/51AGsjxiFnL._SY344_BO1,204,203,200_.jpg'),
 ('1595550789', 'The Total Money Makeover', ' Dave Ramsey', 'Personal Finance', 'This award-winning author teaches you everything you need to know about handling your money wisely and living a debt-free life.', 'http://ecx.images-amazon.com/images/I/517LV72u4VL.jpg'),

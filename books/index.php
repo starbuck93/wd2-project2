@@ -67,7 +67,7 @@ if ($row_cnt_other > 7) {
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title> Amazon Wanna-Be: <?php print($bookAndReview[0][1]);?></title>
+		<title><?php print($bookAndReview[0][1]);?>: Amazon Wanna-Be</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -118,8 +118,9 @@ if ($row_cnt_other > 7) {
 					<hr>
                     <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
 										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
-										<p>By: <?php printf("%s",$thisresult[0][2]); ?></p> <!--author-->
-										<p>ISBN-10: <?php printf("%s",$thisresult[0][0]); ?></p> <!--isbn-->
+										<p>By: <a href="search.php?search=<?php printf("%s",$thisresult[0][2]); ?>"><?php printf("%s",$thisresult[0][2]); ?></a></p> <!--author-->
+                    <p>ISBN-10: <?php printf("%s",$thisresult[0][0]); ?></p> <!--isbn-->
+                    <p>Category: <a href="search.php?search=<?php printf("%s",$thisresult[0][3]); ?>"><?php printf("%s",$thisresult[0][3]); ?></a></p> <!--category-->
                     <hr>
                   	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
 										<button class="btn btn-primary btn-lg ">Add to Cart</button>
@@ -201,9 +202,9 @@ if ($row_cnt_other > 7) {
         // $otherBooks[$i][8] ||==|| name; //review data
                         ?>
                         <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active"><?php print($otherBooks[$i][3]);?></div>
+                            <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php printf("%s",$otherBooks[$i][3]); ?>"><?php print($otherBooks[$i][3]);?></a></div>
                             <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5]);?>">
+                                <a href="index.php?isbn=<?php printf("%s",$otherBooks[$i][0]); ?>"><img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5]);?>"></a>
                             </div> <a href="./?isbn=<?php print($otherBooks[$i][0]);?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1]);?><span class="badge">$<?php print(rand(1,50));?></span></a>
                         </div>
                         <?php } ?>

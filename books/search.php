@@ -43,7 +43,7 @@ $otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../">Amazon Wanna-Be</a>
+            <a class="navbar-brand" href="../main.php">Amazon Wanna-Be</a>
         </div>
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">

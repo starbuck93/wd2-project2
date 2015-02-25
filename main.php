@@ -43,6 +43,12 @@
             	<li><a href="cart.php">Cart</a></li>
             	<li><a href="logout.php">Sign Out</a></li>
           	</ul>
+          <form action="books/search.php" method="POST" class="navbar-form navbar-right"> <!--The search.php page should be similar to this page... without the main book. Maybe a grid or list of results-->
+          <div class="form-group">
+            <input type="text" name="search" placeholder="Search!" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Search</button>
+        </form>
         </div><!--/.nav-collapse -->
           
         </div><!--/.navbar-collapse -->
