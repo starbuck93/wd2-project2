@@ -85,13 +85,15 @@ if ($row_cnt_other > 7) {
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../main.php">Amazon Wanna-Be</a>
+          <a class="navbar-brand" href="../main.php"><?php echo "<a class='navbar-brand' href='#'>Hello, ".$_SESSION['name']."</a>";?></a>
         </div>
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="." class="" style="">Explore</a></li>
-                <li><a href="search.php" class="">Search</a></li>
-                <li><a href="#" class="">About</a></li>
+              <li><a href="../main.php">Home</a></li>
+              <li class="active"><a href="explore.php">Explore</a></li>
+              <li><a href="#wishlist">Wish List</a></li>
+              <li><a href="../cart.php">Cart</a></li>
+              <li><a href="../logout.php">Sign Out</a></li>
             </ul>
 
         <!--/.nav-collapse -->

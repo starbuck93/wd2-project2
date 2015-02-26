@@ -39,6 +39,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
             	<li class="active"><a href="main.php">Home</a></li>
+              <li><a href="books/explore.php">Explore</a></li>
             	<li><a href="#wishlist">Wish List</a></li>
             	<li><a href="cart.php">Cart</a></li>
             	<li><a href="logout.php">Sign Out</a></li>
