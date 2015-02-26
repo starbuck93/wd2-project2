@@ -1,0 +1,3 @@
+http://tutsplus.s3.amazonaws.com/tutspremium/web-development/064_drag_drop_html5/demo/index.html
+http://www.developerdrive.com/2013/09/using-html5-drag-and-drop-to-create-a-shopping-cart/
+http://www.jeasyui.com/tutorial/dd/dnd2.php

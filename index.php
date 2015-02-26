@@ -104,7 +104,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Company 2014.</p> <p>See us on <a href="https://github.com/starbuck93/wd2-project2/">GitHub</a></p> <p><iframe src="https://ghbtns.com/github-btn.html?user=starbuck93&repo=wd2-project2&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
       </footer>
     </div> <!-- /container -->
 
