@@ -18,21 +18,6 @@ $obj = $result->fetch_object();
   $user_id = $obj->id;
   $name = $obj->name;
 
-$row_cnt = 0;
-$bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
-        // $bookAndReview[0][0] ||==|| isbn;
-        // $bookAndReview[0][1] ||==|| title;
-        // $bookAndReview[0][2] ||==|| author;
-        // $bookAndReview[0][3] ||==|| category;
-        // $bookAndReview[0][4] ||==|| summary;
-        // $bookAndReview[0][5] ||==|| imgtitle;        
-        // $bookAndReview[0][6] ||==|| rateing; //review data
-        // $bookAndReview[0][7] ||==|| comment; //review data
-        // $bookAndReview[0][8] ||==|| name; //review data
-if ($row_cnt > 6) {
-  $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
-}
-
 if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
   $rating = $_REQUEST["rating"];
   $review = $_REQUEST["reviewPost"];
@@ -51,11 +36,27 @@ if(isset($_REQUEST["rating"]) && isset($_REQUEST["reviewPost"])){
     
 }
 
+$row_cnt = 0;
+$bookAndReview = getBooksAndReviews($book_request,"",$row_cnt);
+        // $bookAndReview[0][0] ||==|| isbn;
+        // $bookAndReview[0][1] ||==|| title;
+        // $bookAndReview[0][2] ||==|| author;
+        // $bookAndReview[0][3] ||==|| category;
+        // $bookAndReview[0][4] ||==|| summary;
+        // $bookAndReview[0][5] ||==|| imgtitle;        
+        // $bookAndReview[0][6] ||==|| rateing; //review data
+        // $bookAndReview[0][7] ||==|| comment; //review data
+        // $bookAndReview[0][8] ||==|| name; //review data
+if ($row_cnt > 6) {
+  $row_cnt = 5; //only show 5 reviews per books ... should probably sort by high reviews or low reviews or something in the SQL
+}
+
+
 
   $category = $bookAndReview[0][3];
   $title = $bookAndReview[0][1];
-  $myQuery = "SELECT book.*, rate, comment, name FROM book LEFT OUTER JOIN review ON isbn = book_id LEFT JOIN user ON review.user_id = user.id WHERE category='$category' AND title != '$title'";
-$otherBooks = getBooksAndReviews("",$myQuery,$row_cnt_other); //same category
+  $myQuery = "SELECT * FROM book WHERE category='$category' AND title != '$title'";
+$otherBooks = getSearch("",$myQuery,$row_cnt_other); //same category
 if ($row_cnt_other > 7) {
   $row_cnt_other = 6; //limit the number of extra books to show
 }
