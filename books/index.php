@@ -111,7 +111,6 @@ if ($row_cnt_other > 7) {
               <li><a href="../cart.php">Cart</a></li>
               <li><a href="../logout.php">Sign Out</a></li>
             </ul>
-
         <!--/.nav-collapse -->
 				<form action="search.php" method="GET" class="navbar-form navbar-right"> <!--The search.php page should be similar to this page... without the main book. Maybe a grid or list of results-->
 					<div class="form-group">
@@ -122,7 +121,6 @@ if ($row_cnt_other > 7) {
 			</div>
     </div>
 </div>
-
 <div class="container">
     <div class="col-md-12">
         <div class="center-block text-center">
@@ -131,103 +129,85 @@ if ($row_cnt_other > 7) {
         </div>
         <div class="container">
             <div class="menu row">
-                <div class="product col-sm-6">
-                  <a href="index.php?isbn=<?php printf("%s",$thisresult[0][0]); ?>"><img style="max-height: 500px;" src="<?php print($bookAndReview[0][5]);?>"></a>
-					<hr>
-                    <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
-										<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
-										<p>By: <a href="search.php?search=<?php printf("%s",$thisresult[0][2]); ?>"><?php printf("%s",$thisresult[0][2]); ?></a></p> <!--author-->
-                    <p>ISBN-10: <?php printf("%s",$thisresult[0][0]); ?></p> <!--isbn-->
-                    <p>Category: <a href="search.php?search=<?php printf("%s",$thisresult[0][3]); ?>"><?php printf("%s",$thisresult[0][3]); ?></a></p> <!--category-->
-                    <hr>
-                  	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
-										<button class="btn btn-primary btn-lg" onclick= "addToCart()">  Add to Cart</button>
-										<button class="btn btn-success btn-lg">Add to Wishlist</button>
-                    <hr>
-
-
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#reviews">Reviews</a></li>
-                        <li><a data-toggle="tab" href="#addreview">Add A Review</a></li>
-                        <li><a data-toggle="tab" href="#details">Details</a></li>
-                    </ul>
-
-                  	<div class="tab-content">
-                      <div class="tab-pane active" id="reviews">
-
-                        <h4>Buyer Reviews</h4>
-                        <ul class="list-unstyled">
-                        <?php for ($i=0; $i < $row_cnt; $i++) { ?>
-                          <li class="clearfix">(<?php print($bookAndReview[$i][8]) ?>) <?php print($bookAndReview[$i][7]); for ($j=0; $j < $bookAndReview[$i][6]; $j++) { echo "<i class=\"fa fa-star fa-2x yellow pull-right\"></i>"; }?> </li>
-                        <?php } ?>
-                        </ul>
-
-                      </div>
-                      <div class="tab-pane" id="details"><h4>Product Information</h4>
-                        <p>You're paying for a brand new, used book.</p>
-												<p>Shipping costs $40 the first time, and $0 every time after that for A WHOLE YEAR. So you better enjoy paying for memberships because that's basically what this is.</p>
-											</div>
-                      <div class="tab-pane" id="addreview"><h4>Add A Review</h4>
-                        <?php //don't let users add multiple reviews?>
-                        <form id="review" action="index.php" method="POST">
-                          <div class="starRating"> <!--http://code.stephenmorley.org/html-and-css/star-rating-widget/-->
+              <div class="product col-sm-6">
+                <a href="index.php?isbn=<?php printf("%s",$thisresult[0][0]); ?>"><img style="max-height: 500px;" src="<?php print($bookAndReview[0][5]);?>"></a>
+  			        <hr>
+                  <h2><?php printf("%s",$thisresult[0][1]); ?></h2> <!--Title-->
+  								<p><?php printf("%s",$thisresult[0][4]); ?></p> <!--description-->
+  								<p>By: <a href="search.php?search=<?php printf("%s",$thisresult[0][2]); ?>"><?php printf("%s",$thisresult[0][2]); ?></a></p> <!--author-->
+                  <p>ISBN-10: <?php printf("%s",$thisresult[0][0]); ?></p> <!--isbn-->
+                  <p>Category: <a href="search.php?search=<?php printf("%s",$thisresult[0][3]); ?>"><?php printf("%s",$thisresult[0][3]); ?></a></p> <!--category-->
+                  <hr>
+                	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
+  								<button class="btn btn-primary btn-lg" onclick= "addToCart()">  Add to Cart</button>
+  								<button class="btn btn-success btn-lg">Add to Wishlist</button>
+                  <hr>
+                  <ul class="nav nav-tabs">
+                      <li class="active"><a data-toggle="tab" href="#reviews">Reviews</a></li>
+                      <li><a data-toggle="tab" href="#addreview">Add A Review</a></li>
+                      <li><a data-toggle="tab" href="#details">Details</a></li>
+                  </ul>
+                	<div class="tab-content">
+                    <div class="tab-pane active" id="reviews">
+                      <h4>Buyer Reviews</h4>
+                      <ul class="list-unstyled">
+                      <?php for ($i=0; $i < $row_cnt; $i++) { ?>
+                        <li class="clearfix">(<?php print($bookAndReview[$i][8]) ?>) <?php print($bookAndReview[$i][7]); for ($j=0; $j < $bookAndReview[$i][6]; $j++) { echo "<i class=\"fa fa-star fa-2x yellow pull-right\"></i>"; }?> </li>
+                      <?php } ?>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="details"><h4>Product Information</h4>
+                      <p>You're paying for a brand new, used book.</p>
+  										<p>Shipping costs $40 the first time, and $0 every time after that for A WHOLE YEAR. So you better enjoy paying for memberships because that's basically what this is.</p>
+  									</div>
+                    <div class="tab-pane" id="addreview"><h4>Add A Review</h4>
+                      <?php //don't let users add multiple reviews?>
+                      <form id="review" action="index.php" method="POST">
+                        <div class="starRating"> <!--http://code.stephenmorley.org/html-and-css/star-rating-widget/-->
+                          <div>
                             <div>
                               <div>
                                 <div>
-                                  <div>
-                                    <input id="rating1" type="radio" name="rating" value="1">
-                                    <label for="rating1"><span>1</span></label>
-                                  </div>
-                                  <input id="rating2" type="radio" name="rating" value="2">
-                                  <label for="rating2"><span>2</span></label>
+                                  <input id="rating1" type="radio" name="rating" value="1">
+                                  <label for="rating1"><span>1</span></label>
                                 </div>
-                                <input id="rating3" type="radio" name="rating" value="3">
-                                <label for="rating3"><span>3</span></label>
+                                <input id="rating2" type="radio" name="rating" value="2">
+                                <label for="rating2"><span>2</span></label>
                               </div>
-                              <input id="rating4" type="radio" name="rating" value="4">
-                              <label for="rating4"><span>4</span></label>
+                              <input id="rating3" type="radio" name="rating" value="3">
+                              <label for="rating3"><span>3</span></label>
                             </div>
-                            <input id="rating5" type="radio" name="rating" value="5">
-                            <label for="rating5"><span>5</span></label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4"><span>4</span></label>
                           </div>
-                          <textarea form="review" name="reviewPost" rows="3" cols="50" required></textarea>
-                            <label for="reviewPost"><?php print($name);?>, your name will be submitted along with this review.</label>
-                          <input type="hidden" name="isbn" value="<?php printf("%s",$thisresult[0][0]); ?>">
-                          <input type="submit" name="submit" value="Submit">
-                        </form>
-
-                      </div>
-                     </div>
-
-
-                </div>
-                <div class="col-sm-6">
-                  <h4 class="text-center">Other Books in this Category</h4>
-                    <div class="productsrow">
-                        <?php
-
-                          if($row_cnt_other == 0)
-                            print("<p>Found none.</p>");
-                          for ($i=0; $i < $row_cnt_other; $i++) { 
-        // $otherBooks[$i][0] ||==|| isbn;
-        // $otherBooks[$i][1] ||==|| title;
-        // $otherBooks[$i][2] ||==|| author;
-        // $otherBooks[$i][3] ||==|| category;
-        // $otherBooks[$i][4] ||==|| summary;
-        // $otherBooks[$i][5] ||==|| imgtitle;        
-        // $otherBooks[$i][6] ||==|| rateing; //review data
-        // $otherBooks[$i][7] ||==|| comment; //review data
-        // $otherBooks[$i][8] ||==|| name; //review data
-                        ?>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php printf("%s",$otherBooks[$i][3]); ?>"><?php print($otherBooks[$i][3]);?></a></div>
-                            <div class="product-image">
-                                <a href="index.php?isbn=<?php printf("%s",$otherBooks[$i][0]); ?>"><img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5]);?>"></a>
-                            </div> <a href="./?isbn=<?php print($otherBooks[$i][0]);?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1]);?><span class="badge">$<?php print(rand(1,50));?></span></a>
+                          <input id="rating5" type="radio" name="rating" value="5">
+                          <label for="rating5"><span>5</span></label>
                         </div>
-                        <?php } ?>
+                        <textarea form="review" name="reviewPost" rows="3" cols="50" required></textarea>
+                          <label for="reviewPost"><?php print($name);?>, your name will be submitted along with this review.</label>
+                        <input type="hidden" name="isbn" value="<?php printf("%s",$thisresult[0][0]); ?>">
+                        <input type="submit" name="submit" value="Submit">
+                      </form>
                     </div>
-                </div>
+                   </div>
+              </div>
+              <div class="col-sm-6">
+                <h4 class="text-center">Other Books in this Category</h4>
+                  <div class="productsrow">
+                      <?php
+                        if($row_cnt_other == 0)
+                          print("<p>There are no more books in the category .</p>");
+                        for ($i=0; $i < $row_cnt_other; $i++) { 
+                      ?>
+                      <div class="product menu-category">
+                          <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php printf("%s",$otherBooks[$i][3]); ?>"><?php print($otherBooks[$i][3]);?></a></div>
+                          <div class="product-image">
+                              <a href="index.php?isbn=<?php printf("%s",$otherBooks[$i][0]); ?>"><img class="product-image menu-item list-group-item" src="<?php print($otherBooks[$i][5]);?>"></a>
+                          </div> <a href="./?isbn=<?php print($otherBooks[$i][0]);?>" class="menu-item list-group-item"><?php print($otherBooks[$i][1]);?><span class="badge">$<?php print(rand(1,50));?></span></a>
+                      </div>
+                      <?php } ?>
+                  </div>
+              </div>
             </div>
             <!--/row-->
         </div>
