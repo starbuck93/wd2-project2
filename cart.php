@@ -80,6 +80,11 @@
           $fetch->execute_query();
           $result2=$fetch->get_result();
         ?>
+        <div class='container'>
+            <div class='starter-template'>
+                <h1>Shopping Cart</h1>
+            </div>
+        </div>
         <!--STARBUCK-->
         <div class="container">
         <div class="col-md-12">
@@ -95,7 +100,7 @@
                             <div class="menu-category-name list-group-item active"><?php print($row2['category'])?></div>
                             <div class="product-image">
                                 <img class="product-image menu-item list-group-item" src="<?php print($row2['imgtitle'])?>">
-                            </div> <a href="./?isbn=<?php print($row2['isbn'])?>" class="menu-item list-group-item"><?php print($row2['title'])?><span class="badge">$<?php print(rand(1,50));?></span></a>
+                            </div> <a href="books/?isbn=<?php print($row2['isbn'])?>" class="menu-item list-group-item"><?php print($row2['title'])?><span class="badge">$<?php print(rand(1,50));?></span></a>
                       </div>
                        <?php }         
                       }//else?>
