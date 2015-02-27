@@ -74,7 +74,23 @@ if ($row_cnt_other > 7) {
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<link href="css/styles.css" rel="stylesheet">
-	</head>
+		<!--AJAX THAT ADDS A BOOK TO THE CART-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type = "text/javascript">
+			function addToCart()
+			{
+				var book = <?php echo json_encode($bookAndReview[0][1]);?>;
+				$.ajax({
+					url: "add_to_cart.php",
+					type: "POST",
+					data: {'newbook': book},
+					success: function()
+					{
+						alert("Book added to cart.");
+					}
+				});
+			}
+		</script>
 	<body>
 <!--template-->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -125,8 +141,8 @@ if ($row_cnt_other > 7) {
                     <p>Category: <a href="search.php?search=<?php printf("%s",$thisresult[0][3]); ?>"><?php printf("%s",$thisresult[0][3]); ?></a></p> <!--category-->
                     <hr>
                   	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
-										<button class="btn btn-primary btn-lg ">Add to Cart</button>
-										<button class="btn btn-success btn-lg ">Add to Wishlist</button>
+										<button class="btn btn-primary btn-lg" onclick= "addToCart()">  Add to Cart</button>
+										<button class="btn btn-success btn-lg">Add to Wishlist</button>
                     <hr>
 
 
