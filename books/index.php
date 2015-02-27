@@ -55,8 +55,9 @@ if ($row_cnt > 6) {
 
   $category = $bookAndReview[0][3];
   $title = $bookAndReview[0][1];
+  $row_cnt_other = 0;
   $myQuery = "SELECT * FROM book WHERE category='$category' AND title != '$title'";
-$otherBooks = getSearch("",$myQuery,$row_cnt_other); //same category
+$otherBooks = getSearch($myQuery,$row_cnt_other); //same category
 if ($row_cnt_other > 7) {
   $row_cnt_other = 6; //limit the number of extra books to show
 }
@@ -121,7 +122,7 @@ if ($row_cnt_other > 7) {
             <ul class="nav navbar-nav">
               <li><a href="../main.php">Home</a></li>
               <li class="active"><a href="explore.php">Explore</a></li>
-              <li><a href="#wishlist">Wish List</a></li>
+              <li><a href="../wishlist.php">Wish List</a></li>
               <li><a href="../cart.php">Cart</a></li>
               <li><a href="../logout.php">Sign Out</a></li>
             </ul>
@@ -154,7 +155,7 @@ if ($row_cnt_other > 7) {
                   <hr>
                 	<h2 class="text-right">$<?php print(rand(1,50));?></h2>
   								<button class="btn btn-primary btn-lg" onclick= "addToCart()">  Add to Cart</button>
-  								<button class="btn btn-success btn-lg">Add to Wishlist</button>
+  								<button class="btn btn-success btn-lg" onclick= "addToWishlist()">Add to Wishlist</button>
                   <hr>
                   <ul class="nav nav-tabs">
                       <li class="active"><a data-toggle="tab" href="#reviews">Reviews</a></li>

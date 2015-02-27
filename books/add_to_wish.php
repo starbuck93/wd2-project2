@@ -1,5 +1,5 @@
 <?php
-	//ADDS A BOOK TO THE CART
+	//ADDS A BOOK TO THE wishlist
 	include '../DBQuery.php';
 	session_start();
 	$query = "SELECT `wishlist` from `user` WHERE `email` = '".$_SESSION['email']."';";

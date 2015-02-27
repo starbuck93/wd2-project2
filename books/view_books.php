@@ -117,9 +117,11 @@ function getSearch($query,&$row_cnt){
     $result = $link->query($query);
     
     if(!$result)
-        die ($link->error);
+        die ($link->error . " " . $query);
     
     $row_cnt = $result->num_rows;
+    if($row_cnt == 0)
+        $row_cnt = 0;
 
     $i=0;
     /* fetch object array */

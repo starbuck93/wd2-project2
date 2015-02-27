@@ -46,7 +46,7 @@ $otherBooks = getSearch($myQuery,$row_cnt_other); //same category
             <ul class="nav navbar-nav">
               <li><a href="../main.php">Home</a></li>
               <li class="active"><a href="explore.php">Explore</a></li>
-              <li><a href="#wishlist">Wish List</a></li>
+              <li><a href="../wishlist.php">Wish List</a></li>
               <li><a href="../cart.php">Cart</a></li>
               <li><a href="../logout.php">Sign Out</a></li>
             </ul>
