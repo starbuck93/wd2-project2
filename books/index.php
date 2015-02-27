@@ -78,19 +78,32 @@ if ($row_cnt_other > 7) {
 		<!--AJAX THAT ADDS A BOOK TO THE CART-->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script type = "text/javascript">
-			function addToCart()
-			{
-				var book = <?php echo json_encode($bookAndReview[0][1]);?>;
-				$.ajax({
-					url: "add_to_cart.php",
-					type: "POST",
-					data: {'newbook': book},
-					success: function()
-					{
-						alert("Book added to cart.");
-					}
-				});
-			}
+      function addToCart()
+      {
+        var book = <?php echo json_encode($bookAndReview[0][1]);?>;
+        $.ajax({
+          url: "add_to_cart.php",
+          type: "POST",
+          data: {'newbook': book},
+          success: function()
+          {
+            alert("Book added to cart.");
+          }
+        });
+      }
+      function addToWishlist()
+      {
+        var book = <?php echo json_encode($bookAndReview[0][1]);?>;
+        $.ajax({
+          url: "add_to_wish.php",
+          type: "POST",
+          data: {'newbook': book},
+          success: function()
+          {
+            alert("Book added to Wishlist.");
+          }
+        });
+      }
 		</script>
 	<body>
 <!--template-->
