@@ -6,7 +6,7 @@
 		private $db;
 		
 		function DBQuery($q){
-			$this->db = new mysqli('localhost', 'root', '', 'amazon');
+			$this->db = new mysqli("localhost","root","","amazon");
 			if (mysqli_connect_errno()){
 				$this->error = mysqli_connect_error();
 				echo "Error: connection to database failed %s\n ".$this->error;

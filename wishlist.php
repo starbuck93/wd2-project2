@@ -17,7 +17,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Cart</title>
+    <title>Wishlist</title>
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -45,8 +45,8 @@
           <ul class="nav navbar-nav">
             <li><a href="main.php">Home</a></li>
             <li><a href="books/explore.php">Explore</a></li>
-            <li><a href="wishlist.php">Wish List</a></li>
-            <li class="active"><a href="#">Cart</a></li>
+            <li class="active"><a href="#">Wish List</a></li>
+            <li><a href="cart.php">Cart</a></li>
             <li><a href="logout.php">Sign Out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -59,11 +59,11 @@
         $fetch->execute_query();
         $result=$fetch->get_result();
         $row = $result->fetch_assoc();
-        if(is_null($row['cart'])||$row['cart']===''){
+        if(is_null($row['wishlist'])||$row['wishlist']===''){
           echo "<div class='container'>
                   <div class='starter-template'>
-                    <h1>Shopping Cart</h1>
-                    <p class='lead'>Your Shopping Cart is empty.</p>
+                    <h1>Wish List</h1>
+                    <p class='lead'>Your Wish List is empty.</p>
                     <p>Check out <a href=\"books/explore.php\">some of our cool books!</a></p>
                   </div>
                 </div><!-- /.container -->";
@@ -71,7 +71,7 @@
         else{
           //CHANGE TEXT TO ISBN?
           //FETCHES ALL TITLES FROM CART
-          $books = explode(",",$row['cart']);
+          $books = explode(",",$row['wishlist']);
           $query = "SELECT * FROM `book` WHERE";
           foreach($books as $value){
               $query .= " `title` = '".$value."' OR"; 
@@ -85,7 +85,7 @@
     <div class='container'>
       <div class="col-md-12">
         <div class='center-block text-center'>
-          <h1>Shopping Cart</h1>
+          <h1>Wishlist</h1>
         </div>
         <div class="container"><!--STARBUCK-->
           <div class="menu row">
@@ -109,7 +109,7 @@
         </div>
         <div class="container">
           <h3 class="text-right">Total Price: $<?php print($totalPrice)?></h3>
-          <p class="text-right"><a href="checkout.php" class="btn btn-success">Secure Checkout</a> <a href="empty_cart.php" class="btn btn-danger">Empty Cart</a></p>
+          <p class="text-right"><a href="empty_wishlist.php" class="btn btn-danger">Empty Wish List</a></p>
         </div>
       </div>
     </div>
