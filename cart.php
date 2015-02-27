@@ -79,24 +79,34 @@
           $fetch->set_query($query);
           $fetch->execute_query();
           $result2=$fetch->get_result();
-          //DISPLAYS ALL BOOKS IN CART LIST
-          echo "<div class='container'>
-                 <div class='starter-template'>
-                    <h1>Shopping Cart</h1>
-                 </div>";
-          while($row2 = $result2->fetch_assoc()){
-             echo "<div class='row'>
-                      <img src='img/book.png' class='img-responsive' alt='Responsive image'>
-                      <p>".$row2['title']."</p>
-                      <form action='books/index.php' method='POST'>
-                      <button class='btn btn-default' type='submit'>View details &raquo;</button>
-                      </form>
-                   </div>";
-          }
-          echo "</div>";
+        ?>
+        <!--STARBUCK-->
+        <div class="container">
+        <div class="col-md-12">
+        <div class="container">
+            <div class="menu row">
+                <div class="col-sm-12 ">
+                    <div class="productsrow">
+                      <?php
+                        //DISPLAYS ALL BOOKS IN CART LIST
+                        while($row2 = $result2->fetch_assoc()){
+                      ?>
+                      <div class="product menu-category">
+                            <div class="menu-category-name list-group-item active"><?php print($row2['category'])?></div>
+                            <div class="product-image">
+                                <img class="product-image menu-item list-group-item" src="<?php print($row2['imgtitle'])?>">
+                            </div> <a href="./?isbn=<?php print($row2['isbn'])?>" class="menu-item list-group-item"><?php print($row2['title'])?><span class="badge">$<?php print(rand(1,50));?></span></a>
+                      </div>
+                       <?php }         
+                      }//else?>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
-        }
-    ?>
+    
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
