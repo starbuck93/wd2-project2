@@ -107,6 +107,38 @@ function getBooksAndReviews($isbn,$query,&$row_cnt){
     return $result_array;
 }
 
+function getSearch($query,&$row_cnt){
+    /*
+    usage:
+    array = getBooks("",""); query and row_count
+    */
+    
+    $link = new mysqli("localhost","root","","amazon");
+    $result = $link->query($query);
+    
+    if(!$result)
+        die ($link->error);
+    
+    $row_cnt = $result->num_rows;
+
+    $i=0;
+    /* fetch object array */
+    $result_array = array();
+    while ($obj = $result->fetch_object()) {
+        $result_array[$i][0] = $obj->isbn;
+        $result_array[$i][1] = $obj->title;
+        $result_array[$i][2] = $obj->author;
+        $result_array[$i][3] = $obj->category;
+        $result_array[$i][4] = $obj->summary;
+        $result_array[$i][5] = $obj->imgtitle;        
+        // $result_array[$i][6] = $obj->user_id; //review data
+        // $result_array[$i][7] = $obj->book_id; //review data
+        // $result_array[$i][8] = $obj->rate; //review data
+        // $result_array[$i][9] = $obj->comment; //review data
+        $i++;
+    }
+    return $result_array;
+}
 
 if($book_request){    
 

@@ -4,7 +4,8 @@
   //include('redirect_to_home.php');
   session_start();
   require_once('DBQuery.php');
-  include 'books\view_books.php';   
+  include 'books\view_books.php';  
+  $totalPrice = 0; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +20,13 @@
     <title>Cart</title>
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="css/starter-template.css" rel="stylesheet">
     <script src="js/ie-emulation-modes-warning.js"></script>
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -50,7 +51,7 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>
+    </div>
     <?php
         //FIX THAT CODING!!! (NOTE TO SELF, RAJ)
         $query = "SELECT * FROM `user` WHERE `email` = '".$_SESSION['email']."';";
@@ -63,6 +64,7 @@
                   <div class='starter-template'>
                     <h1>Shopping Cart</h1>
                     <p class='lead'>Your Shopping Cart is empty.</p>
+                    <p>Check out <a href=\"books/explore.php\">some of our cool books!</a></p>
                   </div>
                 </div><!-- /.container -->";
         }
@@ -80,33 +82,34 @@
           $fetch->execute_query();
           $result2=$fetch->get_result();
         ?>
-        <div class='container'>
-            <div class='starter-template'>
-                <h1>Shopping Cart</h1>
-            </div>
+    <div class='container'>
+      <div class="col-md-12">
+        <div class='center-block text-center'>
+          <h1>Shopping Cart</h1>
         </div>
-        <!--STARBUCK-->
-        <div class="container">
-        <div class="col-md-12">
-        <div class="container">
-            <div class="menu row">
-                <div class="col-sm-12 ">
-                    <div class="productsrow">
-                      <?php
-                        //DISPLAYS ALL BOOKS IN CART LIST
-                        while($row2 = $result2->fetch_assoc()){
-                      ?>
-                      <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active"><?php print($row2['category'])?></div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="<?php print($row2['imgtitle'])?>">
-                            </div> <a href="books/?isbn=<?php print($row2['isbn'])?>" class="menu-item list-group-item"><?php print($row2['title'])?><span class="badge">$<?php print(rand(1,50));?></span></a>
-                      </div>
-                       <?php }         
-                      }//else?>
-                    </div>
-                </div>
+        <div class="container"><!--STARBUCK-->
+          <div class="menu row">
+            <div class="col-sm-12 ">
+              <div class="productsrow">
+                <?php
+                  //DISPLAYS ALL BOOKS IN CART LIST
+                  while($row2 = $result2->fetch_assoc()){
+                ?>
+                  <div class="product menu-category">
+                  <div class="menu-category-name list-group-item active">(QTY: 1) <?php print($row2['title'])?></div>
+                    <div class="product-image">
+                        <a href="books/?isbn=<?php printf("%s",$row2['isbn']); ?>"><img class="product-image menu-item list-group-item" src="<?php print($row2['imgtitle'])?>"></a>
+                    </div> <a href="books/?isbn=<?php print($row2['isbn'])?>" class="menu-item list-group-item"><?php print($row2['title'])?><span class="badge">$<?php $price=rand(1,50); $totalPrice += $price; print($price);?></span></a>
+                  </div>
+                <?php }         
+        }//end of else?>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="container">
+          <h3 class="text-right">Total Price: $<?php print($totalPrice)?></h3>
+          <p class="text-right"><a href="checkout.php" class="btn btn-success">Secure Checkout</a> <a href="empty_cart.php" class="btn btn-danger">Empty Cart</a></p>
         </div>
       </div>
     </div>

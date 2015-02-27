@@ -52,34 +52,30 @@ include 'view_books.php';
 </div>
 
 <div class="container">
-    <div class="col-md-12">
-        <div class="center-block text-center">
-            <h1>Explore</h1>
-            <p class="lead">We know books.</p>
-        </div>
-        <div class="container">
-            <div class="menu row">
-                <div class="col-sm-12 ">
-                <?php
-                ?>
-                    <div class="productsrow">
-                        <?php
-                          for ($i=0; $i < 14; $i++) { 
-                        ?>
-                        <div class="product menu-category">
-                            <div class="menu-category-name list-group-item active"><?php print($thisresult[$i][3])?></div>
-                            <div class="product-image">
-                                <img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>">
-                            </div> <a href="./?isbn=<?php print($thisresult[$i][0])?>" class="menu-item list-group-item"><?php print($thisresult[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
-                        </div>
-                        <?php }; ?>
-                    </div>
-                </div>
-            </div>
-            <!--/row-->
-        </div>
-        <!--/container-->
+  <div class="col-md-12">
+    <div class="center-block text-center">
+        <h1>Explore</h1>
+        <p class="lead">We know books.</p>
     </div>
+    <div class="container">
+      <div class="menu row">
+        <div class="col-sm-12 ">
+          <div class="productsrow">
+            <?php
+              for ($i=0; $i < 14; $i++) { 
+            ?>
+            <div class="product menu-category">
+                <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php print($thisresult[$i][3])?>"><?php print($thisresult[$i][3])?></a></div>
+                <div class="product-image">
+                  <a href="index.php?isbn=<?php printf("%s",$thisresult[$i][0]); ?>"><img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>"></a>
+                </div> <a href="./?isbn=<?php print($thisresult[$i][0])?>" class="menu-item list-group-item"><?php print($thisresult[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
+            </div>
+            <?php }; ?>
+          </div>
+        </div>
+      </div><!--/row-->
+    </div><!--/container-->
+  </div>
 </div>
 
 
