@@ -16,10 +16,18 @@ include 'view_books.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
 		<link href="css/styles.css" rel="stylesheet">
+    <script>
+       $(function(){
+          $('#cartcontent').datagrid({
+            singleSelect:true
+          });
+        });
+    </script>
+
 	</head>
-	<body>
+<body>
 <!--template-->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container" style="">
@@ -47,9 +55,11 @@ include 'view_books.php';
 					</div>
 					<button type="submit" class="btn btn-success">Search</button>
 				</form>
-			</div>
+			 </div>
     </div>
 </div>
+
+
 
 <div class="container">
   <div class="col-md-12">
@@ -67,7 +77,9 @@ include 'view_books.php';
             <div class="product menu-category">
                 <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php print($thisresult[$i][3])?>"><?php print($thisresult[$i][3])?></a></div>
                 <div class="product-image">
-                  <a href="index.php?isbn=<?php printf("%s",$thisresult[$i][0]); ?>"><img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>"></a>
+                  <a href="index.php?isbn=<?php printf("%s",$thisresult[$i][0]); ?>">
+                  	<img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>" id="<?php print($thisresult[$i][1])?>" draggable="true">
+                  </a>
                 </div> <a href="./?isbn=<?php print($thisresult[$i][0])?>" class="menu-item list-group-item"><?php print($thisresult[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
             </div>
             <?php }; ?>
@@ -76,8 +88,7 @@ include 'view_books.php';
       </div><!--/row-->
     </div><!--/container-->
   </div>
-</div>
-
+</div><!--/container-->
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

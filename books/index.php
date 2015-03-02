@@ -88,7 +88,7 @@ if ($row_cnt_other > 7) {
           data: {'newbook': book},
           success: function()
           {
-            alert("Book added to cart.");
+            alert(book + " added to cart.");
           }
         });
       }
