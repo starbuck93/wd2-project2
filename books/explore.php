@@ -16,16 +16,47 @@ include 'view_books.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
 		<link href="css/styles.css" rel="stylesheet">
-    <script>
-       $(function(){
-          $('#cartcontent').datagrid({
-            singleSelect:true
-          });
-        });
+		<script>
+			function allowDrop(ev)
+		    {
+		      ev.preventDefault();
+		    }
+		     function dropToCart(ev)
+		      {
+		        ev.preventDefault();
+		        var book = ev.dataTransfer.getData("text");
+		        $.ajax({
+		          url: "add_to_cart.php",
+		          type: "POST",
+		          data: {'newbook': book},
+		          success: function()
+		          {
+		            alert(book + " added to cart.");
+		          }
+		        });
+		      }
+		      function dropToWishlist(ev)
+		      {
+		        ev.preventDefault();
+		        var book = ev.dataTransfer.getData("text");
+		        $.ajax({
+		          url: "add_to_wish.php",
+		          type: "POST",
+		          data: {'newbook': book},
+		          success: function()
+		          {
+		            alert(book + " added to wishlist.");
+		          }
+		        });
+		      }
+		      function drag(ev)
+		      {
+		        ev.dataTransfer.setData("text",ev.target.id);
+		      }
     </script>
-
+		</script>
 	</head>
 <body>
 <!--template-->
@@ -43,8 +74,8 @@ include 'view_books.php';
             <ul class="nav navbar-nav">
               <li><a href="../main.php">Home</a></li>
               <li class="active"><a href="explore.php">Explore</a></li>
-              <li><a href="../wishlist.php">Wish List</a></li>
-              <li><a href="../cart.php">Cart</a></li>
+              <li><a href="../wishlist.php" ondrop="dropToWishlist(event)" ondragover="allowDrop(event)">Wish List</a></li>
+              <li><a href="../cart.php" ondrop="dropToCart(event)" ondragover="allowDrop(event)">Cart</a></li>
               <li><a href="../logout.php">Sign Out</a></li>
             </ul>
 
@@ -78,7 +109,7 @@ include 'view_books.php';
                 <div class="menu-category-name list-group-item active"><a href="search.php?search=<?php print($thisresult[$i][3])?>"><?php print($thisresult[$i][3])?></a></div>
                 <div class="product-image">
                   <a href="index.php?isbn=<?php printf("%s",$thisresult[$i][0]); ?>">
-                  	<img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>" id="<?php print($thisresult[$i][1])?>" draggable="true">
+                  	<img class="product-image menu-item list-group-item" src="<?php print($thisresult[$i][5])?>" id="<?php print($thisresult[$i][1])?>" draggable="true" ondragstart="drag(event)">
                   </a>
                 </div> <a href="./?isbn=<?php print($thisresult[$i][0])?>" class="menu-item list-group-item"><?php print($thisresult[$i][1])?><span class="badge">$<?php print(rand(1,50));?></span></a>
             </div>
